@@ -14,6 +14,8 @@ public class ApartamentoDTO {
 
 	@NotNull
 	private Integer numero;
+	
+	private String complemento;
 
 	@NotNull
 	private Integer andar;

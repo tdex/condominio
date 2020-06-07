@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,9 +43,11 @@ public class Apartamento {
 	private Integer andar;
 
 	@OneToMany(mappedBy = "endereco")
+	@JsonIgnore
 	private List<Pessoa> residente;
 	
 	@OneToMany(mappedBy = "apartamento")
+	@JsonIgnore
 	private List<Veiculo> veiculo;
 	
 	@NotNull
