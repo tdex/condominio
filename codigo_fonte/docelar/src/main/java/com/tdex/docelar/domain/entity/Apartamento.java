@@ -1,7 +1,9 @@
 package com.tdex.docelar.domain.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +25,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Apartamento {
+public class Apartamento implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,14 +46,14 @@ public class Apartamento {
 	@NotNull
 	private Integer andar;
 
-	@OneToMany(mappedBy = "endereco")
+	@OneToMany(mappedBy = "endereco", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private List<Pessoa> residente;
-	
-	@OneToMany(mappedBy = "apartamento")
+
+	@OneToMany(mappedBy = "apartamento", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private List<Veiculo> veiculo;
-	
+
 	@NotNull
 	private Integer vagasGaragem;
 

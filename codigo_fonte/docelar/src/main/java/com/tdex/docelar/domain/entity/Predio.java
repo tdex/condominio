@@ -1,5 +1,8 @@
 package com.tdex.docelar.domain.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,18 +21,20 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Predio {
+public class Predio implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NotEmpty(message = "Nome do prédio é obrigatório")
 	private String nome;
-	
-	@ManyToOne
+
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "apartamento_id")
 	@JsonIgnore
 	private Apartamento apartamento;
-	
+
 }
