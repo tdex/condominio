@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,15 +32,18 @@ public class Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@NotEmpty(message = "Nome é obrigatório.")
 	private String nome;
 
 	@ManyToOne
 	@JoinColumn(name = "apartamento_id")
+	@NotNull(message = "Endereço é obrigatório.")
 	private Apartamento endereco;
 
 	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Telefone> telefone;
 
+	@NotEmpty(message = "E-mail é obrigatório.")
 	private String email;
 
 	private String senha;

@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,10 +29,12 @@ public class Veiculo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@NotEmpty(message = "Placa do veículo é obrigatório.")
 	private String placa;
 
 	@OneToOne
 	@JoinColumn(name = "apartamento_id")
+	@NotNull(message = "Necessário indicar a qual apartamento o veículo pertence.")
 	private Apartamento apartamento;
 
 }

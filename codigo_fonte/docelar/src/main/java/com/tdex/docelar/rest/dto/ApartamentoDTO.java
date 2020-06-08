@@ -9,17 +9,17 @@ import lombok.Data;
 @Data
 public class ApartamentoDTO {
 
-	@NotNull
+	@NotNull(message = "Defina o prédio que esse apartamento pertence.")
 	private Integer predio;
 
-	@NotNull
+	@NotNull(message = "Defina o numero do apartamento.")
 	private Integer numero;
 	
 	private String complemento;
 
-	@NotNull
+	@NotNull(message = "Defina o andar do apartamento.")
 	private Integer andar;
 
-	@NotNull
+	@NotNull(message = "Defina a quantidade de vagas na garagem esse apartamento possui.")
 	private Integer vagas;
 }

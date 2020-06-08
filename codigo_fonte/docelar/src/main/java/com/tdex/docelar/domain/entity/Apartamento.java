@@ -35,15 +35,15 @@ public class Apartamento implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "predio_id")
-	@NotNull
+	@NotNull(message = "Necessário definir o prédio em que se encontra o apartamento.")
 	private Predio predio;
 
-	@NotNull
+	@NotNull(message = "Numero do apartamento é obrigatório.")
 	private Integer numero;
 
 	private String complemento;
 
-	@NotNull
+	@NotNull(message = "Andar do apartamento é obrigatório.")
 	private Integer andar;
 
 	@OneToMany(mappedBy = "endereco", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -54,7 +54,7 @@ public class Apartamento implements Serializable {
 	@JsonIgnore
 	private List<Veiculo> veiculo;
 
-	@NotNull
+	@NotNull(message = "Quantidade de vagas de garagem é obrigatório.")
 	private Integer vagasGaragem;
 
 }
