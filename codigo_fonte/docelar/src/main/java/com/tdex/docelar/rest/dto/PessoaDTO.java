@@ -11,10 +11,12 @@ public class PessoaDTO {
 
 	private String nome;
 
-	private Integer endereco; 
-	
+	private Integer endereco;
+
 	private List<TelefoneDTO> telefone;
-	
+
 	private String email;
-	
+
+	private String senha;
+
 }
