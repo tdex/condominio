@@ -30,9 +30,6 @@ public class PessoaService {
 	private ApartamentoRepository apartamentoRepository;
 
 	@Autowired
-//	private UsuarioRepository usuarioRepository;
-//
-//
 	private UsuarioServiceImpl usuarioService;
 
 	public Pessoa salvarPessoa(PessoaDTO dto) {
