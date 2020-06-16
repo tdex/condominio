@@ -1,5 +1,8 @@
 # TODO
 
+## Geral
+    - Controle de encomendas
+
 ## Feed de notificações para o condomínio
     - Mensagens para todo o condomínio [ADMIN]
         - Usuário poderá solicitar postagem em feed do condomínio [USER]
