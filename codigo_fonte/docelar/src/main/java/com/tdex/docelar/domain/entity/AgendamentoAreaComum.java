@@ -3,15 +3,19 @@ package com.tdex.docelar.domain.entity;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.tdex.docelar.domain.enums.StatusAgendamentoEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,9 +43,15 @@ public class AgendamentoAreaComum {
 	@NotNull(message = "Área é obrigatório.")
 	private AreaComum area;
 
-	@NotBlank(message = "Informe o horário do agendamento")
-	private LocalDateTime horario;
+	@NotNull(message = "Informe o horário de inicio.")
+	private LocalDateTime horaInicio;
 
-	@NotNull(message = "Periodo é obrigatório.")
-	private Integer qtdPeriodo;
+	@NotNull(message = "Informe o horário de inicio.")
+	private LocalDateTime horaFim;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status")
+	private StatusAgendamentoEnum status;
+
+	private LocalDateTime ultimaAtualizacao;
 }

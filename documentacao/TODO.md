@@ -10,6 +10,4 @@
     - Mensagens somente para o prédio [ADMIN, USER]
 
 ## Áreas comuns
-    - Cadastro de Áreas Comuns
-    - Reserva de Área
-    - Calendário de Áreas Comuns
+     - Calendário de Áreas Comuns

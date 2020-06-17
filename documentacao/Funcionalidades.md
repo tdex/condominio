@@ -8,3 +8,4 @@ Sistema para gerenciamento de condomínio onde o sindico poderá focar em ativid
 - Cada apartamento tem vagas de garagem a qual poderão ser registrados Veículos por Apartamento.
 - Adicionar Pessoas.
 - Cada Pessoa terá um Usuário de acesso que deverá ser utilizado para acessar as funcionalidades do sistema.
+- Cadastro de Áreas comuns do condomínio, onde os inquilinos poderão reservar uma área para um determinado horário e o Administrador poderá aprovar ou recusar a solicitação.
