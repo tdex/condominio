@@ -9,3 +9,4 @@ Sistema para gerenciamento de condomínio onde o sindico poderá focar em ativid
 - Adicionar Pessoas.
 - Cada Pessoa terá um Usuário de acesso que deverá ser utilizado para acessar as funcionalidades do sistema.
 - Cadastro de Áreas comuns do condomínio, onde os inquilinos poderão reservar uma área para um determinado horário e o Administrador poderá aprovar ou recusar a solicitação.
+- Controle de encomendas na portaria. Registro e gerenciamento das encomendas deixadas para os moradores.

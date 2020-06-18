@@ -57,4 +57,8 @@ public class Apartamento implements Serializable {
 	@NotNull(message = "Quantidade de vagas de garagem é obrigatório.")
 	private Integer vagasGaragem;
 
+	@OneToMany(mappedBy = "destinatario", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
+	private List<Encomenda> encomendas;
+
 }
