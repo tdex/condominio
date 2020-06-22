@@ -50,15 +50,17 @@ public class PessoaService {
 								.usuario(usuario)
 								.build();
 
-		dto.getTelefone().forEach(tel -> {
-			Telefone telefone = Telefone.builder()
-					.ddd(tel.getDdd())
-					.numero(tel.getNumero())
-					.pessoa(pessoa)
-					.build();
+		if (dto.getTelefone() != null && !dto.getTelefone().isEmpty()) {
+			dto.getTelefone().forEach(tel -> {
+				Telefone telefone = Telefone.builder()
+						.ddd(tel.getDdd())
+						.numero(tel.getNumero())
+						.pessoa(pessoa)
+						.build();
 
-			telefones.add(telefone);
-		});
+				telefones.add(telefone);
+			});			
+		}
 
 		pessoa.setTelefone(telefones);
 

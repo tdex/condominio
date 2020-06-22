@@ -45,6 +45,7 @@ public class ApartamentoController {
 												.numero(ap.getNumero())
 												.andar(ap.getAndar())
 												.vagasGaragem(ap.getVagas())
+												.complemento(ap.getComplemento())
 												.build();
 
 		return repository.save(apartamento);
