@@ -19,6 +19,9 @@ import com.tdex.docelar.service.UsuarioServiceImpl;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	private static final String PERFIL_ADMIN = "ADMIN";
+	private static final String PERFIL_USER = "USER";
 
 	@Autowired
 	private UsuarioServiceImpl usuarioService;
@@ -46,17 +49,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable()
 			.authorizeRequests()
 				.antMatchers("/api/apartamento/**")
-					.hasRole("ADMIN")
+					.hasRole(PERFIL_ADMIN)
 				.antMatchers("/api/predio/**")
-					.hasRole("ADMIN")
+					.hasRole(PERFIL_ADMIN)
 				.antMatchers("/api/veiculo/**")
-					.hasRole("ADMIN")
+					.hasRole(PERFIL_ADMIN)
 				.antMatchers("/api/pessoa/**")
-					.hasAnyRole("ADMIN", "USER")
+					.hasAnyRole(PERFIL_ADMIN, PERFIL_USER)
 				.antMatchers("/api/telefone/**")
-					.hasAnyRole("ADMIN", "USER")
+					.hasAnyRole(PERFIL_ADMIN, PERFIL_USER)
 				.antMatchers(HttpMethod.PATCH, "/api/agendamentoarea/**")
-					.hasRole("ADMIN")
+					.hasRole(PERFIL_ADMIN)
 				.antMatchers(HttpMethod.POST, "/api/usuario/**")
 					.permitAll()
 				.anyRequest().authenticated()
