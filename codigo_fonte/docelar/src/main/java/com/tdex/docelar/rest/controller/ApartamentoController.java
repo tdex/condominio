@@ -1,8 +1,9 @@
 package com.tdex.docelar.rest.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
-import org.aspectj.apache.bcel.generic.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,66 +15,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.tdex.docelar.domain.entity.Apartamento;
-import com.tdex.docelar.domain.entity.Predio;
-import com.tdex.docelar.domain.repository.ApartamentoRepository;
-import com.tdex.docelar.domain.repository.PredioRepository;
 import com.tdex.docelar.rest.dto.ApartamentoDTO;
 import com.tdex.docelar.rest.dto.ApartamentoVagasGaragemDTO;
+import com.tdex.docelar.rest.service.ApartamentoService;
 
 @RestController
 @RequestMapping("/api/apartamento")
 public class ApartamentoController {
 
 	@Autowired
-	private ApartamentoRepository repository;
+	private ApartamentoService service;
 
-	@Autowired
-	private PredioRepository predioRepository;
+	@GetMapping
+	public List<Apartamento> allApartamentos() {
+		return service.listarTodosApartamentos();
+	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Apartamento save(@RequestBody @Valid ApartamentoDTO ap) {
-		Predio predio = predioRepository.findById(ap.getPredio())
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-						"Não foi possível inserir apartamento no prédio indicado."));
-
-		Apartamento apartamento = Apartamento.builder()
-												.predio(predio)
-												.numero(ap.getNumero())
-												.andar(ap.getAndar())
-												.vagasGaragem(ap.getVagas())
-												.complemento(ap.getComplemento())
-												.build();
-
-		return repository.save(apartamento);
+		return service.salvar(ap);
 	}
 
 	@GetMapping("{id}")
 	public Apartamento getApartamentoById(@PathVariable Integer id) {
-		return repository.findById(id)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Apartamento não encontrado."));
+		return service.buscarApartamento(id);
 	}
 
 	@DeleteMapping("{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteApartamento(@PathVariable Integer id) {
-		repository.findById(id).map(ap -> {
-			repository.deleteById(ap.getId());
-			return Type.VOID;
-		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-				"Não foi possível excluir apartamento. Código inválido!"));
+		service.deleteApartamento(id);
 	}
-	
 
 	@PatchMapping("{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void atualizaVagasGaragem(@PathVariable Integer id, @RequestBody @Valid ApartamentoVagasGaragemDTO vagas) {
-		repository.findById(id).map(ap -> {
-			ap.setVagasGaragem(vagas.getVagas());
-			return repository.save(ap);
-		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Apartamento não encontrado."));
+		service.atualizarVagasGaragem(id, vagas.getVagas());
 	}
+
 }
