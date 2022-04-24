@@ -19,7 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.tdex.docelar.domain.entity.Veiculo;
 import com.tdex.docelar.rest.dto.VeiculoDTO;
-import com.tdex.docelar.service.VeiculoService;
+import com.tdex.docelar.rest.service.VeiculoService;
 
 @RestController
 @RequestMapping("/api/veiculo")
