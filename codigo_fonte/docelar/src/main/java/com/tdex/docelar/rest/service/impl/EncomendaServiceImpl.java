@@ -1,9 +1,7 @@
-package com.tdex.docelar.service;
+package com.tdex.docelar.rest.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,9 +14,10 @@ import com.tdex.docelar.domain.repository.ApartamentoRepository;
 import com.tdex.docelar.domain.repository.EncomendaRepository;
 import com.tdex.docelar.rest.dto.EncomendaDTO;
 import com.tdex.docelar.rest.dto.EncomendaRecebimentoDTO;
+import com.tdex.docelar.rest.service.EncomendaService;
 
 @Service
-public class EncomendaService {
+public class EncomendaServiceImpl implements EncomendaService {
 
 	@Autowired
 	private EncomendaRepository encomendaRepository;
@@ -26,11 +25,12 @@ public class EncomendaService {
 	@Autowired
 	private ApartamentoRepository apartamentoRepository;
 
+	@Override
 	public List<Encomenda> listAll() {
 		return encomendaRepository.findAll();
 	}
 
-	@Transactional
+	@Override
 	public Encomenda save(EncomendaDTO dto) {
 		Apartamento apartamento = apartamentoRepository.findById(dto.getDestinatario())
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Destinatário não encontrado."));
@@ -44,6 +44,7 @@ public class EncomendaService {
 		return encomendaRepository.save(encomenda);
 	}
 
+	@Override
 	public Encomenda saida(Integer id, EncomendaRecebimentoDTO recebedor) {
 		return encomendaRepository.findById(id).map(encomenda -> {
 			encomenda.setHoraSaida(LocalDateTime.now());
@@ -52,17 +53,18 @@ public class EncomendaService {
 		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Encomenda não encontrada."));
 	}
 
+	@Override
 	public List<Encomenda> listarEncomendasAbertasPorApartamento(Integer idApartamento) {
 		return apartamentoRepository.findById(idApartamento).map(ap -> {
 			return encomendaRepository.findByDestinatarioAndHoraSaidaIsNull(ap);
 		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Apartamento não encontrado."));
 	}
 
+	@Override
 	public List<Encomenda> listarTodasEncomendasPorApartamento(Integer idApartamento) {
 		return apartamentoRepository.findById(idApartamento).map(ap -> {
 			return encomendaRepository.findByDestinatario(ap);
 		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Apartamento não encontrado."));
 	}
-
 
 }

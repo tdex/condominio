@@ -18,7 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.tdex.docelar.domain.entity.Encomenda;
 import com.tdex.docelar.rest.dto.EncomendaDTO;
 import com.tdex.docelar.rest.dto.EncomendaRecebimentoDTO;
-import com.tdex.docelar.service.EncomendaService;
+import com.tdex.docelar.rest.service.EncomendaService;
 
 @RestController
 @RequestMapping("/api/encomenda")
