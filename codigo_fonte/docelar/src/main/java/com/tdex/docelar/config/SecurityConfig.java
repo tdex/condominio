@@ -15,7 +15,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.tdex.docelar.security.JwtAuthFilter;
 import com.tdex.docelar.security.JwtService;
-import com.tdex.docelar.service.UsuarioServiceImpl;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
@@ -24,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	private static final String PERFIL_USER = "USER";
 
 	@Autowired
-	private UsuarioServiceImpl usuarioService;
+	private UsuarioServiceConfig usuarioService;
 
 	@Autowired
 	private JwtService jwtService;

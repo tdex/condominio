@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.tdex.docelar.config.UsuarioServiceConfig;
 import com.tdex.docelar.domain.entity.Usuario;
 import com.tdex.docelar.exception.SenhaInvalidaException;
 import com.tdex.docelar.rest.dto.TokenDTO;
 import com.tdex.docelar.rest.dto.UsuarioDTO;
 import com.tdex.docelar.security.JwtService;
-import com.tdex.docelar.service.UsuarioServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UsuarioController {
 
-	private final UsuarioServiceImpl usuarioService;
+	private final UsuarioServiceConfig usuarioService;
 	private final JwtService jwtService;
 
 	@PostMapping

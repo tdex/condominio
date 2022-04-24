@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.tdex.docelar.config.UsuarioServiceConfig;
 import com.tdex.docelar.domain.entity.Apartamento;
 import com.tdex.docelar.domain.entity.Pessoa;
 import com.tdex.docelar.domain.entity.Telefone;
@@ -19,7 +20,6 @@ import com.tdex.docelar.domain.repository.PessoaRepository;
 import com.tdex.docelar.domain.repository.TelefoneRepository;
 import com.tdex.docelar.rest.dto.PessoaDTO;
 import com.tdex.docelar.rest.service.PessoaService;
-import com.tdex.docelar.service.UsuarioServiceImpl;
 
 @Service
 public class PessoaServiceImpl implements PessoaService {
@@ -34,7 +34,7 @@ public class PessoaServiceImpl implements PessoaService {
 	private ApartamentoRepository apartamentoRepository;
 
 	@Autowired
-	private UsuarioServiceImpl usuarioService;
+	private UsuarioServiceConfig usuarioService;
 
 	@Override
 	public Pessoa salvarPessoa(PessoaDTO dto) {

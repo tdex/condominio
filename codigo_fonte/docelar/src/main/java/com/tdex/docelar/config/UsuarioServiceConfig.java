@@ -1,4 +1,4 @@
-package com.tdex.docelar.service;
+package com.tdex.docelar.config;
 
 import javax.transaction.Transactional;
 
@@ -18,7 +18,7 @@ import com.tdex.docelar.exception.SenhaInvalidaException;
 import com.tdex.docelar.rest.dto.UsuarioDTO;
 
 @Service
-public class UsuarioServiceImpl implements UserDetailsService {
+public class UsuarioServiceConfig implements UserDetailsService {
 
 	@Autowired
 	private PasswordEncoder encoder;
