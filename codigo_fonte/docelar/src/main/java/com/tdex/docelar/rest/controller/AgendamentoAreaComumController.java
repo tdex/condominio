@@ -20,7 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.tdex.docelar.domain.entity.AgendamentoAreaComum;
 import com.tdex.docelar.domain.enums.StatusAgendamentoEnum;
 import com.tdex.docelar.rest.dto.AgendamentoDTO;
-import com.tdex.docelar.service.AreaComumService;
+import com.tdex.docelar.rest.service.AreaComumService;
 
 @RestController
 @RequestMapping("/api/agendamentoarea")

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.tdex.docelar.domain.entity.AreaComum;
-import com.tdex.docelar.service.AreaComumService;
+import com.tdex.docelar.rest.service.AreaComumService;
 
 @RestController
 @RequestMapping("/api/area")
