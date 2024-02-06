@@ -1,6 +1,6 @@
 package com.tdex.docelar.rest.controller;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.aspectj.apache.bcel.generic.Type;
 import org.springframework.beans.factory.annotation.Autowired;
